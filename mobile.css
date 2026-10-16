@@ -54,3 +54,5 @@
 
 /* Hold a card to turn the wheel; empty space still scrolls the page. */
 @media(max-width:849px) and (pointer:coarse){.portfolio .orbit-card{touch-action:none}}
+
+@media(max-width:849px){.hero-hologram .holo-layout{touch-action:pan-y pinch-zoom}}

@@ -41,13 +41,24 @@
  function pointerDraw(){if(!raf&&!pointerRaf&&loaded&&!failed&&inView)pointerRaf=requestAnimationFrame(()=>{pointerRaf=0;draw();});}
  function move(e){if(e.pointerType==='touch')return;const r=canvas.getBoundingClientRect(),scale=Math.min(width/240,height/280);pointerX=(e.clientX-r.left-(width-240*scale)/2)/(240*scale);pointerY=(e.clientY-r.top-(height-280*scale)/2)/(280*scale);pointerDraw();}
  function leave(){pointerX=pointerY=-10;pointerDraw();}
+ // Phone swipes are scoped to the figure and description, leaving controls native.
+ const swipeSurface=root.querySelector('.holo-layout');let swipe=null;
+ function clearSwipe(){const old=swipe;swipe=null;if(old?.active){try{swipeSurface.releasePointerCapture(old.id);}catch{}}}
+ function swipeStart(e){if(!e.isPrimary){clearSwipe();sync();return;}if(e.pointerType!=='touch'||e.button!==0||!matchMedia('(max-width:849px)').matches)return;swipe={id:e.pointerId,x:e.clientX,y:e.clientY,active:false};stop();}
+ function swipeMove(e){if(!swipe||swipe.id!==e.pointerId)return;const dx=e.clientX-swipe.x,dy=e.clientY-swipe.y;
+  if(!swipe.active){if(Math.abs(dy)>12&&Math.abs(dy)>=Math.abs(dx)){clearSwipe();sync();return;}if(Math.abs(dx)<12||Math.abs(dx)<Math.abs(dy)*1.3)return;swipe.active=true;swipeSurface.setPointerCapture(e.pointerId);}
+  if(e.cancelable)e.preventDefault();
+ }
+ function swipeEnd(e){if(!swipe||swipe.id!==e.pointerId)return;const old=swipe,dx=e.clientX-old.x,dy=e.clientY-old.y;clearSwipe();const threshold=Math.max(36,Math.min(64,swipeSurface.clientWidth*.12));if(old.active&&Math.abs(dx)>=threshold&&Math.abs(dx)>Math.abs(dy)*1.3)select(index+(dx<0?1:-1));else sync();}
+ function swipeCancel(e){if(swipe&&e.pointerId===swipe.id){clearSwipe();sync();}}
+ swipeSurface.addEventListener('pointerdown',swipeStart);swipeSurface.addEventListener('pointermove',swipeMove);swipeSurface.addEventListener('pointerup',swipeEnd);swipeSurface.addEventListener('pointercancel',swipeCancel);
  function motion(){if(reduced.matches&&loaded){current.set(targets[index]);text(index);draw();}toggle.disabled=reduced.matches;sync();}
  root.addEventListener('click',onClick);canvas.addEventListener('pointermove',move);canvas.addEventListener('pointerleave',leave);document.addEventListener('visibilitychange',sync);reduced.addEventListener('change',motion);
  const intersection=new IntersectionObserver(entries=>{inView=entries[0].isIntersecting;sync();},{threshold:.05});intersection.observe(root);
  const resizeObserver=new ResizeObserver(resize);resizeObserver.observe(canvas);
  text(0);from.set(current);
  Promise.resolve().then(()=>{if(!ctx)throw Error('Canvas unavailable');return Promise.all(states.map(sample));}).then(values=>{targets.push(...values);loaded=true;root.classList.add('holo-ready');current.set(targets[0]);from.set(current);resize();if(reduced.matches){current.set(targets[index]);draw();}motion();sync();}).catch(()=>{failed=true;root.classList.add('holo-static');root.parentElement.querySelector('.holo-message').textContent='Imagen de respaldo disponible. Puedes consultar todas las habilidades.';root.querySelectorAll('button').forEach(b=>{if(b===toggle)b.disabled=true;});});
- function destroy(){disposed=true;stop();intersection.disconnect();resizeObserver.disconnect();root.removeEventListener('click',onClick);canvas.removeEventListener('pointermove',move);canvas.removeEventListener('pointerleave',leave);document.removeEventListener('visibilitychange',sync);reduced.removeEventListener('change',motion);removeEventListener('pagehide',stop);removeEventListener('pageshow',sync);}
+ function destroy(){disposed=true;clearSwipe();swipeSurface.removeEventListener('pointerdown',swipeStart);swipeSurface.removeEventListener('pointermove',swipeMove);swipeSurface.removeEventListener('pointerup',swipeEnd);swipeSurface.removeEventListener('pointercancel',swipeCancel);stop();intersection.disconnect();resizeObserver.disconnect();root.removeEventListener('click',onClick);canvas.removeEventListener('pointermove',move);canvas.removeEventListener('pointerleave',leave);document.removeEventListener('visibilitychange',sync);reduced.removeEventListener('change',motion);removeEventListener('pagehide',stop);removeEventListener('pageshow',sync);}
  window.portfolioHologram={select,state:()=>({index,textIndex,phase,paused,running:!!raf||!!timer,count,draws,loaded,failed,elapsed}),destroy,canvas};
  addEventListener('pagehide',stop);addEventListener('pageshow',sync);
 })();
