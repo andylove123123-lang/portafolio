@@ -1,0 +1,10 @@
+Python and JavaScript SVG icon artwork sourced from Simple Icons:
+https://cdn.simpleicons.org/python
+https://cdn.simpleicons.org/javascript
+https://github.com/simple-icons/simple-icons
+Simple Icons project: CC0-1.0. Brand names and marks remain their owners' trademarks.
+Python mark: Python Software Foundation. Used to identify an existing skill.
+web.svg, plc.svg, circuit.svg: original generic interface/circuit geometry authored for this portfolio; not brand logos.
+Portrait: existing portfolio resource assets/magazine/franklin-lema-transparent.png, supplied in the local project before this component. No new face generated.
+
+2026-10-15: web.svg, plc.svg and autocad.svg replaced with authored monochrome vector geometry following user references (HTML/CSS shields, SIMATIC S7-1200, AutoCAD). Brand marks remain their respective owners. JavaScript retains its correct JS mark; no Java skill added.

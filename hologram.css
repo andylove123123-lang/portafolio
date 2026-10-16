@@ -1,0 +1,85 @@
+.holo-intro{font-size:calc(14px * var(--page-scale))}
+.hologram-panel{background:rgba(8,25,35,.85);color:#e0eff2;border:1px solid rgba(83,139,160,.45);border-radius:4px;box-shadow:0 12px 35px rgba(0,0,0,.5),0 0 20px rgba(56,189,248,.1);overflow:hidden;margin-top:20px;font-family:var(--sans);backdrop-filter:blur(10px)}
+.holo-layout{display:grid;grid-template-columns:1fr 1fr;align-items:center;min-height:280px}
+.holo-visual{position:relative;aspect-ratio:6/7;min-width:0;overflow:hidden;background:#050c12}
+.holo-visual canvas,.holo-fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.holo-visual canvas{display:none}
+.holo-ready .holo-visual canvas{display:block}
+.holo-ready .holo-fallback{visibility:hidden}
+.holo-copy{padding:18px 16px;min-height:250px}
+.holo-title{font:500 22px/1.1 var(--serif);letter-spacing:-.015em;margin-bottom:14px;color:#ffffff}
+.holo-description{font-size:12px;line-height:1.6;color:#cadde3;min-height:96px}
+.holo-applications{font-size:11px;line-height:1.7;padding-left:15px;margin:12px 0 0;color:#9dcedb;min-height:75px}
+.holo-toolbar,.holo-choices{display:flex;gap:8px;flex-wrap:wrap;padding:10px 14px;border-top:1px solid rgba(83,139,160,.3)}
+.hologram-panel button{font:11px/1.4 var(--sans);color:#d9edf2;background:none;border:1px solid rgba(83,139,160,.45);border-radius:3px;padding:7px 9px;min-height:34px;transition:all .2s}
+.hologram-panel button:hover,.hologram-panel button[aria-pressed=true]{background:#1b3a4a;color:#ffffff;border-color:#38bdf8;box-shadow:0 0 10px rgba(56,189,248,.3)}
+.hologram-panel button:focus-visible{outline:2px solid #38bdf8;outline-offset:2px}
+.holo-choices{gap:6px;padding-top:0;border:0}
+.holo-choices button{font-size:10px;padding:5px 7px}
+.holo-message{font:11px/1.5 var(--sans);margin:10px 0;color:#7dd3fc}
+.holo-transcript{font-size:13px;margin-top:14px}
+.holo-transcript summary{cursor:pointer;min-height:35px;color:#7dd3fc}
+.holo-transcript[open]{max-height:145px;overflow:auto}
+.holo-transcript h3{font-size:20px;margin-top:14px;color:#ffffff}
+.holo-transcript p,.holo-transcript li{font-size:13px}
+@media(max-width:849px){.holo-intro{font-size:15px}
+.hologram-panel{margin-top:14px}
+.holo-layout{grid-template-columns:1fr}
+.holo-visual{height:255px;aspect-ratio:auto}
+.holo-copy{padding:15px 18px;min-height:210px}
+.holo-title{font-size:24px}
+.holo-description{font-size:13px;min-height:63px}
+.holo-applications{font-size:12px;min-height:65px}
+.holo-toolbar button{min-height:40px}
+.holo-choices button{font-size:11px;min-height:36px}
+.holo-transcript[open]{max-height:100px}
+}
+.holo-visual canvas{filter:brightness(1.35)}
+.hologram-panel:not(.holo-interactive) .holo-toolbar,.hologram-panel:not(.holo-interactive) .holo-choices{display:none}
+.holo-title{min-height:48px}
+.holo-description{margin-bottom:0}
+@media(max-width:849px){.holo-visual{height:174px}
+.holo-copy{min-height:220px;padding:12px 18px}
+.holo-title{min-height:52px;margin-bottom:10px}
+.holo-description{min-height:65px}
+.holo-applications{min-height:60px;margin-top:8px}
+.holo-toolbar{padding-block:8px}
+.holo-transcript{margin-top:6px}
+}
+@media(min-width:850px){.holo-layout{min-height:230px}
+.holo-visual{height:230px;aspect-ratio:auto}
+.holo-copy{min-height:230px;padding:14px}
+.holo-description{min-height:82px}
+.holo-applications{min-height:65px}
+.holo-title{font-size:21px}
+.holo-transcript{margin-top:8px}
+}
+@media(prefers-reduced-motion:reduce){.holo-message:after{content:' Movimiento reducido: elige una figura para verla sin animación.'}
+}
+.web-intro{align-items:start;padding-block:55px 70px;gap:6%;grid-template-columns:1.12fr 1fr}
+.web-intro-copy{padding-top:70px}
+.hero-hologram{min-width:0;scroll-margin-top:25px}
+.hero-hologram .hologram-panel{margin:0;border:1px solid rgba(83,139,160,.45);border-radius:4px;box-shadow:0 16px 40px rgba(0,0,0,.6),0 0 25px rgba(56,189,248,.12);background:rgba(8,25,35,.85)}
+.hero-hologram .holo-layout{display:block;min-height:0}
+.hero-hologram .holo-visual{height:clamp(330px,43vh,460px);aspect-ratio:auto;background:#050c12}
+.hero-hologram .holo-copy{padding:20px 24px;min-height:205px}
+.hero-hologram .holo-title{font-size:25px;min-height:28px;margin-bottom:12px;color:#ffffff}
+.hero-hologram .holo-description{font-size:14px;min-height:66px;line-height:1.55}
+.hero-hologram .holo-applications{font-size:12px;min-height:60px;margin-top:10px}
+.hero-hologram .holo-choices{padding:0 14px 12px}
+.hero-hologram .holo-choices button{font-size:11px;min-height:34px}
+.hero-hologram .holo-toolbar button{font-size:12px;min-height:38px}
+.hero-hologram .holo-transcript{font-size:13px;color:#c3d5d9}
+.hero-hologram .holo-transcript[open]{max-height:240px}
+.hero-hologram .holo-message:empty{display:none}
+.hero-hologram .holo-fallback{object-fit:contain}
+.hero-hologram .holo-visual canvas{filter:none}
+@media(max-width:849px){.web-intro{grid-template-columns:1fr;padding-block:48px 55px;gap:35px}
+.web-intro-copy{padding-top:0}
+.hero-hologram .holo-visual{height:350px}
+.hero-hologram .holo-copy{min-height:240px;padding:20px}
+.hero-hologram .holo-title{font-size:25px;min-height:54px}
+.hero-hologram .holo-description{min-height:90px}
+.hero-hologram .holo-applications{min-height:64px}
+.hero-hologram .holo-choices button{min-height:38px}
+}

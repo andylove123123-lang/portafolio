@@ -1,0 +1,56 @@
+/* Mobile refinements: preserve the holographic world and natural page scrolling. */
+@media(max-width:849px){
+ .portfolio .web-nav{flex-wrap:wrap;gap:12px;padding-block:18px 12px}
+ .portfolio .web-nav nav{width:100%;justify-content:space-between;gap:8px}
+ .portfolio .web-nav nav a,.portfolio .web-nav nav a:nth-child(2){display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 12px}
+ .portfolio .web-nav nav a:last-child{padding:10px 16px}
+ .portfolio .web-intro{padding-top:28px;gap:28px}
+ .portfolio .web-intro h1{font-size:clamp(37px,8vw,60px)}
+ .portfolio .web-intro-copy>p:last-of-type{font-size:16px;line-height:1.75}
+ .portfolio .hero-hologram{min-width:0}
+ .portfolio .hero-hologram .holo-visual{height:clamp(250px,72vw,340px);aspect-ratio:auto}
+ .portfolio .hero-hologram .holo-copy{padding:20px;min-height:0}
+ .portfolio .hero-hologram .holo-title{font-size:22px;min-height:60px}
+ .portfolio .hero-hologram .holo-description{font-size:16px;min-height:140px}
+ .portfolio .hero-hologram .holo-applications{font-size:14px;min-height:82px}
+ .portfolio .hero-hologram .holo-toolbar{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:12px}
+ .portfolio .hero-hologram .holo-choices{padding:0 12px 14px;gap:8px}
+ .portfolio .hero-hologram .holo-choices button{flex:1 1 auto}
+ .portfolio .hero-hologram .holo-toolbar button,.portfolio .hero-hologram .holo-choices button{min-height:44px}
+ .portfolio .profile-content nav a,.portfolio .profile-email,.portfolio .fusion-playback,.portfolio .holo-transcript summary,.portfolio .orbit-gallery-link,.portfolio .mag-read-link,.portfolio .mag-colophon a{min-height:44px;align-content:center}
+ .portfolio .profile-email,.portfolio .mag-read-link,.portfolio .mag-colophon a{display:block;width:fit-content;max-width:100%}
+ .portfolio .profile-content dl{grid-template-columns:1fr}
+ .portfolio .profile-content dl>div:last-child{grid-column:auto}
+ .portfolio .orbit-ready .orbit-browser,.portfolio .orbit-ready .orbit-empty{grid-column:auto;grid-row:auto}
+ .portfolio .orbit-ready .orbit-browser{order:0}
+ .portfolio .orbit-ready .orbit-detail{order:1}
+ .portfolio .orbit-filters input,.portfolio .orbit-filters select,.portfolio .orbit-jump select{font-size:16px;min-width:0}
+ .portfolio .orbit-filters label{min-width:0}
+ .portfolio .orbit-detail{scroll-margin-top:20px}
+ .portfolio .orbit-description{min-height:0}
+ .portfolio .orbit-main-image figcaption{min-height:0}
+ .portfolio .orbit-actions>a:not(.orbit-gallery-link){flex:1 1 auto;min-height:48px}
+ .portfolio .orbit-technologies{margin-bottom:20px}
+ .portfolio .web-details{padding-block:35px 50px}
+ .portfolio .web-details p,.portfolio .web-details .mag-services dd{line-height:1.8}
+ .portfolio .web-contact .mag-contact-email{font-size:clamp(18px,4.7vw,30px);overflow-wrap:anywhere;max-width:100%;line-height:1.7}
+ .portfolio .web-contact .mag-links{gap:10px}
+ .portfolio .web-contact .mag-links a,.portfolio .web-contact .mag-links button{justify-content:center;flex:1 1 auto;min-height:48px;padding-inline:16px}
+ .portfolio .web-contact{padding-bottom:max(40px,env(safe-area-inset-bottom))}
+ .portfolio .web-profile,.portfolio .web-services{min-width:0}
+ .portfolio .orbit-thumbnails{gap:8px}
+ .portfolio .orbit-thumb{min-height:44px}
+ .contact .email,.print-contact{max-width:100%;overflow-wrap:anywhere}
+}
+@media(max-width:359px){
+ .portfolio .orbit-controls{gap:8px}
+ .portfolio .orbit-controls button{font-size:11px;padding-inline:8px}
+ .portfolio .orbit-counter{min-width:56px}
+ .portfolio .hero-hologram .holo-description{min-height:168px}
+ .portfolio .web-profile,.portfolio .web-services{padding:25px 20px}
+}
+@media(hover:none){.portfolio .orbit-card:hover{transform:none}}
+@media(pointer:coarse){.portfolio .profile-content nav a,.portfolio .hero-hologram button,.portfolio .fusion-playback{min-height:44px}}
+
+/* Hold a card to turn the wheel; empty space still scrolls the page. */
+@media(max-width:849px) and (pointer:coarse){.portfolio .orbit-card{touch-action:none}}
