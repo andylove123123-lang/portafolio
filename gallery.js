@@ -1,4 +1,4 @@
-﻿(() => {
+(() => {
   const dialog = document.querySelector('#gallery-viewer');
   const links = [...document.querySelectorAll('.gallery-open')];
   if (dialog && typeof dialog.showModal === 'function') {
@@ -8,13 +8,16 @@
     const show = (index) => {
       selected = (index + links.length) % links.length;
       const link = links[selected];
-      image.src = link.href; image.alt = link.querySelector('img').alt;
+      image.style.visibility = 'hidden'; image.onload = image.onerror = () => { image.style.visibility = ''; };
+      image.src = link.href; if(image.complete && image.naturalWidth) image.style.visibility = ''; image.alt = link.querySelector('img').alt;
       caption.textContent = link.dataset.caption; count.textContent = `${selected + 1} / ${links.length}`;
       previous.disabled = next.disabled = links.length < 2;
     };
     links.forEach((link, index) => link.addEventListener('click', event => {
       event.preventDefault(); opener = link; show(index); dialog.showModal();
     }));
+    document.querySelector('[data-open-cover]')?.addEventListener('click', event => { event.preventDefault(); opener = event.currentTarget; show(0); dialog.showModal(); });
+    window.addEventListener('pageshow', event => { if(event.persisted) { selected = 0; opener = null; if(dialog.open) dialog.close(); image.removeAttribute('src'); } });
     previous.addEventListener('click', () => show(selected - 1));
     next.addEventListener('click', () => show(selected + 1));
     document.querySelector('#viewer-close').addEventListener('click', () => dialog.close());

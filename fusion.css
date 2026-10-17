@@ -200,3 +200,8 @@ body.portfolio{background:var(--fusion-ground);color:var(--fusion-text);backgrou
 .site-footer nav a:hover{text-decoration:underline;text-underline-offset:5px}
 .site-footer .site-footer-copyright{font-size:13px;line-height:1.8;color:#b8cddd;margin:0}
 @media(max-width:599px){.site-footer{margin-top:38px;padding-top:26px}.site-footer nav{gap:6px 20px}.site-footer .site-footer-focus{max-width:30ch}}
+
+/* The expanded profile already carries the full identity. */
+.profile-card[open] .profile-summary-name{display:none}
+@view-transition{navigation:auto}
+@media(prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}}
