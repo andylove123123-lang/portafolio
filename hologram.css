@@ -83,3 +83,6 @@
 .hero-hologram .holo-applications{min-height:64px}
 .hero-hologram .holo-choices button{min-height:38px}
 }
+
+/* Text layers crossfade in the same space while the particle figure reforms. */
+.holo-copy{position:relative}.holo-copy-content{position:relative;min-width:0}.holo-copy-outgoing{z-index:1}
