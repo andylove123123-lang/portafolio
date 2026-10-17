@@ -190,3 +190,13 @@ body.portfolio{background:var(--fusion-ground);color:var(--fusion-text);backgrou
 .hero-hologram .hologram-panel:not([data-state]) .holo-section-heading,.hero-hologram [data-state="rostro"] .holo-section-heading{opacity:0;visibility:hidden}
 @media(max-width:849px){.hero-hologram .holo-section-heading{padding-inline:20px;min-height:58px;font-size:20px}}
 @media(prefers-reduced-motion:reduce){.hero-hologram .holo-section-heading{transition:none}}
+
+/* Quiet identity and useful navigation close the portfolio. */
+.site-footer{margin-top:50px;padding-top:30px;border-top:1px solid #c4e3f52b;color:#c2d8e8;font-family:Sora,var(--sans)}
+.site-footer .site-footer-name{font-size:23px;font-weight:500;letter-spacing:-.025em;line-height:1.4;color:#f1f6fc;margin-bottom:8px}
+.site-footer .site-footer-focus{font-size:14px;line-height:1.8;color:#bcd5e7;margin:0 0 18px}
+.site-footer nav{display:flex;flex-wrap:wrap;gap:10px 25px;margin-bottom:20px}
+.site-footer nav a{display:inline-flex;align-items:center;min-height:44px;font-size:14px;color:#c2e9f7;text-decoration:none}
+.site-footer nav a:hover{text-decoration:underline;text-underline-offset:5px}
+.site-footer .site-footer-copyright{font-size:13px;line-height:1.8;color:#b8cddd;margin:0}
+@media(max-width:599px){.site-footer{margin-top:38px;padding-top:26px}.site-footer nav{gap:6px 20px}.site-footer .site-footer-focus{max-width:30ch}}
